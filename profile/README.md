@@ -1,12 +1,41 @@
-## Hi there 👋
+# Hi there, I’m Ivan Bondaruk 👋
 
-<!--
+I'm passionate about **open source**, creating tools, applications, and even operating systems.  
+I believe in collaboration, sharing ideas, and building software that empowers people.
 
-**Here are some ideas to get you started:**
+---
 
-🙋‍♀️ A short introduction - what is your organization all about?
-🌈 Contribution guidelines - how can the community get involved?
-👩‍💻 Useful resources - where can the community find your docs? Is there anything else the community should know?
-🍿 Fun facts - what does your team eat for breakfast?
-🧙 Remember, you can do mighty things with the power of [Markdown](https://docs.github.com/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
--->
+## 🚀 What I do
+
+- Develop open-source projects across multiple platforms: Linux, Windows, macOS, iOS, Android  
+- Build custom Linux distributions and desktop environments using Qt  
+- Work on developer tools, libraries, and documentation websites  
+- Explore modern UI frameworks: WinUI, SwiftUI, Jetpack Compose, and more
+
+---
+
+## 🤝 I’m looking for
+
+Developers and enthusiasts who want to:
+
+- Collaborate on **open source projects**  
+- Help develop and maintain software and documentation  
+- Build apps for **Apple**, **Android**, **Windows**, and **Linux** ecosystems  
+- Create innovative solutions with modern technologies  
+
+If you share these interests, let’s connect!
+
+---
+
+## 📫 How to reach me
+
+- [Open an issue in my projects](https://github.com/Ivan-Bondaruk/.github/issues/new) to introduce yourself  
+- Email me at: [example@domain.com](mailto:example@domain.com)  
+- Follow me for updates and new projects!
+
+---
+
+> “Great things in business are never done by one person; they're done by a team of people.”  
+> — Steve Jobs
+
+---
