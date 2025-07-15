@@ -30,7 +30,7 @@ If you share these interests, let’s connect!
 ## 📫 How to reach me
 
 - [Open an issue in my projects](https://github.com/Ivan-Bondaruk/.github/issues/new) to introduce yourself  
-- Email me at: [example@domain.com](mailto:bonda,ivan22@gmail.com)  
+- Email me at: [mailto:bonda,ivan22@gmail.com]  
 - Follow me for updates and new projects!
 
 ---
