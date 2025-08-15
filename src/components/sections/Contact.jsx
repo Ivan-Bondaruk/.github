@@ -1,10 +1,16 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
 import emailjs from "emailjs-com";
 import {useTranslation} from "react-i18next";
+import ReactGA from "react-ga4";
 
 export const Contact = () => {
   const { t } = useTranslation();
+
+    useEffect(() => {
+        ReactGA.initialize('G-PHYBCEXJXK');
+        ReactGA.send({ hitType: "pageview", page: window.location.pathname });
+    }, []);
 
   const [formData, setFormData] = useState({
     name: "",

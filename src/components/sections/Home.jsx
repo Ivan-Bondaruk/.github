@@ -1,8 +1,15 @@
 import { RevealOnScroll } from "../RevealOnScroll";
 import {useTranslation} from "react-i18next";
+import {useEffect} from "react";
+import ReactGA from "react-ga4";
 
 export const Home = () => {
   const { t } = useTranslation();
+
+    useEffect(() => {
+        ReactGA.initialize('G-PHYBCEXJXK');
+        ReactGA.send({ hitType: "pageview", page: window.location.pathname });
+    }, []);
 
   return (
     <section
