@@ -8,11 +8,17 @@ import { About } from "./components/sections/About";
 import { Projects } from "./components/sections/Projects";
 import "./index.css";
 import { Contact } from "./components/sections/Contact";
+import ReactGA from 'react-ga4';
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  useEffect(() => {
+        ReactGA.initialize('G-PHYBCEXJXK');
+        ReactGA.send({ hitType: "pageview", page: window.location.pathname });
+      }, []);
+  
   return (
     <>
       {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}{" "}
