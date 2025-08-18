@@ -1,41 +1,34 @@
-import {useEffect, useState} from "react";
-import "./App.css";
-import { LoadingScreen } from "./components/LoadingScreen";
-import { Navbar } from "./components/Navbar";
-import { MobileMenu } from "./components/MobileMenu";
-import { Home } from "./components/sections/Home";
-import { About } from "./components/sections/About";
-import { Projects } from "./components/sections/Projects";
-import "./index.css";
-import { Contact } from "./components/sections/Contact";
-import ReactGA from 'react-ga4';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import OhmsLaw from './components/sections/OhmsLaw';
+import OhmsiOS from './components/sections/OhmsiOS';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-function App() {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+import * as Sentry from '@sentry/react';
+import Privacy from "./components/sections/privacy/Privacy.jsx";
+import OhmsLawPrivacy from "./components/sections/privacy/OhmsLawPrivacy.jsx";
+import Home from "./components/sections/Home.jsx";
+import UpFooter from "./components/UpFooter.jsx";
 
-  useEffect(() => {
-        ReactGA.initialize('G-PHYBCEXJXK');
-        ReactGA.send({ hitType: "pageview", page: window.location.pathname });
-      }, []);
-  
+const App = () => {
   return (
-    <>
-      {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}{" "}
-      <div
-        className={`min-h-screen transition-opacity duration-700 ${
-          isLoaded ? "opacity-100" : "opacity-0"
-        } bg-black text-gray-100`}
-      >
-        <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        <Home />
-        <About />
-        <Projects />
-        <Contact />
-      </div>
-    </>
-  );
+      <Router>
+          <main className="bg-white min-h-screen text-black">
+              <Navbar />
+              <Routes>
+                  <Route path="/" element={<Home />} />
+
+                  <Route path="/ohms-law" element={<OhmsLaw />} />
+                  <Route path="/ohms-law/ios" element={<OhmsiOS />} />
+
+                  <Route path="/privacy" element={<Privacy />} />
+                  <Route path="/privacy/software/ohmslaw" element={<OhmsLawPrivacy />} />
+              </Routes>
+              <UpFooter/>
+              <Footer />
+          </main>
+      </Router>
+  )
 }
 
-export default App;
+export default Sentry.withProfiler(App);

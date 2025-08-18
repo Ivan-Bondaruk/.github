@@ -1,67 +1,68 @@
-import { useEffect } from "react";
-import NavSwitcher from "./NavSwitcher.jsx";
-import {useTranslation} from "react-i18next";
+import { navPages } from "../constants";
+import { Link, useLocation } from "react-router-dom";
+import {useRef, useState} from "react";
+import {faviconImg} from "../utils/index.js";
 
-export const Navbar = ({ menuOpen, setMenuOpen }) => {
+const Navbar = () => {
+    const location = useLocation();
+    const [hovered, setHovered] = useState(null);
 
-  const { t } = useTranslation();
+    const timeoutRef = useRef(null);
 
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-  }, [menuOpen]);
+    const handleMouseEnter = (name) => {
+        clearTimeout(timeoutRef.current);
+        setHovered(name);
+    };
+
+    const handleMouseLeave = () => {
+        timeoutRef.current = setTimeout(() => {
+            setHovered(null);
+        }, 200); // задержка 200 мс
+    };
   return (
-    <nav className="fixed top-0 w-full z-40 bg-[rgba(10, 10, 10, 0.8)] backdrop-blur-lg border-b border-white/10 shadow-lg">
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-          <a href="#home" className="font-mono text-xl font-bold text-white">
-            {" "}
-            Ivan Bondaruk{" "}
-          </a>
+    <header className="w-full py-5 sm:px-10 px-5 flex justify-between items-center">
+      <nav className="flex w-full screen-max-width">
+        <img src={faviconImg} alt="Apple" width={32} height={32} />
 
-          <div
-            className="w-7 h-5 relative cursor-pointer z-40 md:hidden"
-            onClick={() => setMenuOpen((prev) => !prev)}
-          >
-            &#9776;
-          </div>
+        <div className="flex flex-1 justify-center max-sm:hidden">
+          {navPages.map((nav) => (
+              <div
+                  key={nav.name}
+                  className="relative px-5 text-sm cursor-pointer transition-all"
+                  onMouseEnter={() => handleMouseEnter(nav.name)}
+                  onMouseLeave={handleMouseLeave}
+              >
+                  <Link
+                      to={nav.path}
+                      className={`${
+                          location.pathname === nav.path
+                              ? "text-black font-semibold"
+                              : "text-black hover:text-gray-700"
+                      }`}
+                  >
+                      {nav.name}
+                  </Link>
 
-          <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="#home"
-              className="text-gray-300 hove:text-white transition-colors"
-            >
-              {" "}
-              {t('home')}
-            </a>
-            <a
-              href="#about"
-              className="text-gray-300 hove:text-white transition-colors"
-            >
-              {" "}
-              {t('about')}{" "}
-            </a>
-            <a
-              href="#projects"
-              className="text-gray-300 hove:text-white transition-colors"
-            >
-              {" "}
-              {t('projects')}{" "}
-            </a>
-            <a
-              href="#contact"
-              className="text-gray-300 hove:text-white transition-colors"
-            >
-              {" "}
-              {t('contact')}{" "}
-            </a>
-          </div>
-
-          <div className="hidden md:flex items-center space-x-8">
-            {/* ...другие элементы */}
-            <NavSwitcher />
-          </div>
+                  {/* Dropdown */}
+                  {nav.children && hovered === nav.name && (
+                      <div className="absolute top-full left-0 bg-white border border-gray-200 rounded-lg shadow-lg min-w-max z-50">
+                          {nav.children.map((child) => (
+                              <Link
+                                  key={child.name}
+                                  to={child.path}
+                                  className="block px-6 py-2 text-black hover:bg-gray-100 whitespace-nowrap"
+                              >
+                                  {child.name}
+                              </Link>
+                          ))}
+                      </div>
+                  )}
+              </div>
+          ))}
         </div>
-      </div>
-    </nav>
-  );
-};
+      </nav>
+    </header>
+  )
+}
+
+export default Navbar
