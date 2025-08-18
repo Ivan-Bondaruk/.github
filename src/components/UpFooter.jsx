@@ -4,7 +4,7 @@ const footerData = [
     {
         title: "Software",
         links: [
-            { text: "ibOhm's Law", href: "/ohmslaw" },
+            { text: "ibOhm's Law", href: "/ohms-law" },
         ],
     },
     {
