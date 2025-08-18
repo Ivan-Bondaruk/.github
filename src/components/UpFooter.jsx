@@ -10,7 +10,7 @@ const footerData = [
     {
         title: "Internet Services",
         links: [
-            { text: "Privacy Policy", href: "/privacy/" },
+            { text: "Privacy Policy", href: "/privacy" },
         ],
     },
 ];
