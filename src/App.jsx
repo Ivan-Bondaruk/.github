@@ -9,7 +9,7 @@ import {OhmsLawPolicy} from "@/pages/policy/OhmsLawPolicy.jsx";
 function App() {
   return (
       <Router>
-          <main className="bg-white min-h-screen text-black">
+          <main className="min-h-screen ">
               <Navbar />
               <Routes>
                   <Route index element={<Home />} />
