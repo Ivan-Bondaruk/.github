@@ -3,7 +3,7 @@ import { Home } from "./pages/Home";
 import { NotFound } from "./pages/NotFound";
 import {OhmsLaw} from "@/components/pages/software/OhmsLaw.jsx";
 import {Navbar} from "@/components/Navbar.jsx";
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 import {OhmsLawPolicy} from "@/pages/policy/OhmsLawPolicy.jsx";
 
 function App() {
