@@ -141,7 +141,7 @@ export const OhmsLawPolicy = () => {
                                     <span className="text-xl">{openIndex === index ? "−" : "+"}</span>
                                 </button>
                                 {openIndex === index && (
-                                    <div className="pb-4 text-gray-300">{section.content}</div>
+                                    <div className="pb-4">{section.content}</div>
                                 )}
                             </div>
                         ))}
