@@ -28,15 +28,15 @@ export const Navbar = () => {
       )}
     >
       <div className="container flex items-center justify-between">
-        <a
+        <Link
           className="text-xl font-bold text-primary flex items-center"
-          href="#hero"
+          to="/"
         >
           <span className="relative z-10">
             <span className="text-glow text-foreground"> Ivan </span>{" "}
             Bondaruk
           </span>
-        </a>
+        </Link>
 
         {/* desktop nav */}
         <div className="hidden md:flex space-x-8">
