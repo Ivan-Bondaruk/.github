@@ -1,34 +1,19 @@
-import React from 'react'
-import {footerNav} from '../constants'
-import {Link} from "react-router-dom";
+import { ArrowUp } from "lucide-react";
 
-const Footer = () => {
+export const Footer = () => {
   return (
-    <footer className="py-5 sm:px-10 px-5">
-      <div className="screen-max-width">
-        <div className="bg-neutral-700 my-5 h-[1px] w-full" />
-
-        <div className="flex md:flex-row flex-col md:items-center justify-between">
-          <p className="font-semibold text-gray text-xs">Copyright @ 2025 Ivan Bondaruk. All rights reserved.</p>
-          <div className="flex">
-            {footerNav.map((link, i) => (
-                <React.Fragment key={link.name}>
-                    <Link
-                        to={link.path}
-                        className="text-gray-700 font-semibold hover:text-black transition-colors"
-                    >
-                        {link.name}
-                    </Link>
-                    {i !== footerNav.length - 1 && (
-                        <span className="text-gray-400 flex items-center mx-2">|</span>
-                    )}
-                </React.Fragment>
-            ))}
-          </div>
-        </div>
-      </div>
+    <footer className="py-12 px-4 bg-card relative border-t border-border mt-12 pt-8 flex flex-wrap justify-between items-center">
+      {" "}
+      <p className="text-sm text-muted-foreground">
+        {" "}
+        &copy; {new Date().getFullYear()} Ivan Bondaruk. All rights reserved.
+      </p>
+      <a
+        href="#hero"
+        className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
+      >
+        <ArrowUp size={20} />
+      </a>
     </footer>
-  )
-}
-
-export default Footer
+  );
+};

@@ -1,68 +1,96 @@
-import { navPages } from "../constants";
-import { Link, useLocation } from "react-router-dom";
-import {useRef, useState} from "react";
-import {faviconImg} from "../utils/index.js";
+import { cn } from "@/lib/utils";
+import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
-const Navbar = () => {
-    const location = useLocation();
-    const [hovered, setHovered] = useState(null);
+const navItems = [
+  { name: "Home", href: "hero" },
+  { name: "About", href: "about" },
+  { name: "Skills", href: "skills" },
+  { name: "Projects", href: "projects" },
+  { name: "Contact", href: "contact" },
+];
 
-    const timeoutRef = useRef(null);
+const newNavItems = [
+    { name: "Home", href: "/" },
+    { name: "ibOhm's Law", href: "/software/ohmslaw" },
+];
 
-    const handleMouseEnter = (name) => {
-        clearTimeout(timeoutRef.current);
-        setHovered(name);
+export const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.screenY > 10);
     };
 
-    const handleMouseLeave = () => {
-        timeoutRef.current = setTimeout(() => {
-            setHovered(null);
-        }, 200); // задержка 200 мс
-    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
-    <header className="w-full py-5 sm:px-10 px-5 flex justify-between items-center">
-      <nav className="flex w-full screen-max-width">
-        <img src={faviconImg} alt="Apple" width={32} height={32} />
+    <nav
+      className={cn(
+        "fixed w-full z-40 transition-all duration-300",
+        isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
+      )}
+    >
+      <div className="container flex items-center justify-between">
+        <a
+          className="text-xl font-bold text-primary flex items-center"
+          href="#hero"
+        >
+          <span className="relative z-10">
+            <span className="text-glow text-foreground"> PedroTech </span>{" "}
+            Portfolio
+          </span>
+        </a>
 
-        <div className="flex flex-1 justify-center max-sm:hidden">
-          {navPages.map((nav) => (
-              <div
-                  key={nav.name}
-                  className="relative px-5 text-sm cursor-pointer transition-all"
-                  onMouseEnter={() => handleMouseEnter(nav.name)}
-                  onMouseLeave={handleMouseLeave}
-              >
-                  <Link
-                      to={nav.path}
-                      className={`${
-                          location.pathname === nav.path
-                              ? "text-black font-semibold"
-                              : "text-black hover:text-gray-700"
-                      }`}
-                  >
-                      {nav.name}
-                  </Link>
-
-                  {/* Dropdown */}
-                  {nav.children && hovered === nav.name && (
-                      <div className="absolute top-full left-0 bg-white border border-gray-200 rounded-lg shadow-lg min-w-max z-50">
-                          {nav.children.map((child) => (
-                              <Link
-                                  key={child.name}
-                                  to={child.path}
-                                  className="block px-6 py-2 text-black hover:bg-gray-100 whitespace-nowrap"
-                              >
-                                  {child.name}
-                              </Link>
-                          ))}
-                      </div>
-                  )}
-              </div>
+        {/* desktop nav */}
+        <div className="hidden md:flex space-x-8">
+          {newNavItems.map((item, key) => (
+            <a
+              key={key}
+              href={item.href}
+              className="text-foreground/80 hover:text-primary transition-colors duration-300"
+            >
+              {item.name}
+            </a>
           ))}
         </div>
-      </nav>
-    </header>
-  )
-}
 
-export default Navbar
+        {/* mobile nav */}
+
+        <button
+          onClick={() => setIsMenuOpen((prev) => !prev)}
+          className="md:hidden p-2 text-foreground z-50"
+          aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
+        >
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
+        </button>
+
+        <div
+          className={cn(
+            "fixed inset-0 bg-background/95 backdroup-blur-md z-40 flex flex-col items-center justify-center",
+            "transition-all duration-300 md:hidden",
+            isMenuOpen
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          )}
+        >
+          <div className="flex flex-col space-y-8 text-xl">
+            {navItems.map((item, key) => (
+              <a
+                key={key}
+                href={item.href}
+                className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+};
