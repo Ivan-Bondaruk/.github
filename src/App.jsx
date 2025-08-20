@@ -8,17 +8,17 @@ import {OhmsLawPolicy} from "@/pages/policy/OhmsLawPolicy.jsx";
 
 function App() {
   return (
-      <Router>
+      <HashRouter>
           <main className="min-h-screen ">
               <Navbar />
               <Routes>
                   <Route index element={<Home />} />
-                  <Route path="/software/ohmslaw" element={<OhmsLaw />} />
-                  <Route path="/software/ohmslaw/policy" element={<OhmsLawPolicy />} />
+                  <Route path="software/ohmslaw" element={<OhmsLaw />} />
+                  <Route path="software/ohmslaw/policy" element={<OhmsLawPolicy />} />
                   <Route path="*" element={<NotFound />} />
               </Routes>
           </main>
-      </Router>
+      </HashRouter>
   );
 }
 
