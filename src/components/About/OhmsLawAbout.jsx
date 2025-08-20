@@ -1,4 +1,5 @@
 import {Briefcase, Code, User} from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const OhmsLawAbout = () => {
     return (
@@ -29,10 +30,10 @@ export const OhmsLawAbout = () => {
                                 Download Now
                             </a>
 
-                            <a href="/software/ohmslaw/policy" target="_blank"  rel="noopener noreferrer"  className="cosmic-button">
+                            <Link to="/software/ohmslaw/policy" target="_blank"  rel="noopener noreferrer"  className="cosmic-button">
                                 {" "}
                                 Privacy Policy
-                            </a>
+                            </Link>
                         </div>
                     </div>
 
