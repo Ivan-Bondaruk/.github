@@ -30,7 +30,7 @@ export const OhmsLawAbout = () => {
                                 Download Now
                             </a>
 
-                            <Link to="/software/ohmslaw/policy" target="_blank"  rel="noopener noreferrer"  className="cosmic-button">
+                            <Link to="/software/ohmslaw/policy" className="cosmic-button">
                                 {" "}
                                 Privacy Policy
                             </Link>
