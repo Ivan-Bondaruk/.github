@@ -6,6 +6,7 @@ import {OhmsLawAbout} from "@/components/About/OhmsLawAbout.jsx";
 import {Footer} from "@/components/Footer.jsx";
 import {Section} from "lucide-react";
 import {OhmsLawPolicyHero} from "@/components/Hero/OhmsLawPolicyHero.jsx";
+import {Helmet} from "react-helmet-async";
 
 const sections = [
     {
@@ -120,6 +121,11 @@ export const OhmsLawPolicy = () => {
 
     return (
         <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+            <Helmet>
+                <title>ibOh's Law Policy</title>
+                <meta name="description" content="Privacy policy for ibOh's Law" />
+                <meta name="keywords" content="privacy, policy, app, mobile, ios, android, apple, google" />
+            </Helmet>
             {/* Theme Toggle */}
             <ThemeToggle />
             {/* Background Effects */}
